@@ -376,11 +376,11 @@ func main() {
 			time.Sleep(1 * time.Second)
 			os.Exit(0)
 		})
-		r, err := tty.ReadRune()
+		_, err := tty.ReadRune()
 		if err != nil {
 			log.Fatal(err)
 		}
-		fmt.Println("Key press => " + string(r))
+		break
 
 	}
 }
