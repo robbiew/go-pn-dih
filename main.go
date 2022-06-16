@@ -12,7 +12,7 @@ import (
 	"time"
 
 	"github.com/anaskhan96/soup"
-	"github.com/eiannone/keyboard"
+	"github.com/mattn/go-tty"
 )
 
 // Holds a collection of types from Phenom dropfile
@@ -347,13 +347,11 @@ func main() {
 	ClearScreen()
 	MoveCursor(0, 0)
 
-	// A reliable keyboard library to detect key presses
-	if err := keyboard.Open(); err != nil {
-		fmt.Println(err)
+	tty, err := tty.Open()
+	if err != nil {
+		log.Fatal(err)
 	}
-	defer func() {
-		_ = keyboard.Close()
-	}()
+	defer tty.Close()
 
 	for {
 
@@ -378,11 +376,11 @@ func main() {
 			time.Sleep(1 * time.Second)
 			os.Exit(0)
 		})
-		_, _, err := keyboard.GetSingleKey()
+		r, err := tty.ReadRune()
 		if err != nil {
-			panic(err)
+			log.Fatal(err)
 		}
-		fmt.Printf("Onward!")
+		fmt.Println("Key press => " + string(r))
 
 	}
 }
