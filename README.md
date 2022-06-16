@@ -9,5 +9,5 @@ Only tested on Linux.
 ## Instructions
 
 1. Build the go file
-2. Talisman: read talisman.txt for dropfile scrip install instructions
-3. Launch as a door -- edit shart.sh 
+2. Generate drop file -- Talisman: read talisman.txt for dropfile scrip install instructions; Mystic: https://www.phenomprod.com/releases/mystic/pn-dropfile12.zip
+4. Launch as a door -- edit shart.sh 
