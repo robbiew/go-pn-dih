@@ -245,6 +245,8 @@ func generateEventList() {
 
 	day := time.Now().Day()
 	month := time.Now().Month()
+	year := time.Now().Year()
+	current_time := time.Now()
 	// weekday := time.Now().Weekday()
 	// days := [7]string{"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"}
 
@@ -275,6 +277,13 @@ func generateEventList() {
 		}
 		index++
 	}
+
+	fmt.Print(" " + BlackHi + "-" + Reset + Cyan + "---" + GreenHi + "-" + Reset + Cyan + "--" + GreenHi + "-" + Reset + Cyan + "-" + GreenHi + "-----" + Reset + Cyan + "-" + GreenHi + "--------------------------------------- ---  --- -- -  " + Reset)
+	fmt.Printf("\r\n "+BgRed+Black+">>"+BgBlack+" "+WhiteHi+"Generated on %v %v, %v at %v", month, day, year, current_time.Format("3:4 PM"))
+	fmt.Print("\r\n " + BlackHi + "-" + Reset + Cyan + "---" + GreenHi + "-" + Reset + Cyan + "--" + GreenHi + "-" + Reset + Cyan + "-" + GreenHi + "-----" + Reset + Cyan + "-" + GreenHi + "--------------------------------------- ---  --- -- -  " + Reset)
+
+	MoveCursor(0, 23)
+	fmt.Print("                   " + BgBlueHi + WhiteHi + "<" + Reset + Cyan + "<  " + BlackHi + "... " + Reset + White + "press " + WhiteHi + "ANY KEY " + Reset + White + "to " + WhiteHi + "CONTINUE " + Reset + BlackHi + "... " + Reset + Cyan + ">" + BgBlue + WhiteHi + ">" + Reset)
 
 }
 
@@ -362,21 +371,14 @@ func main() {
 
 		// }
 
-		// Stop the idle timer after key press, then re-start it
-		shortTimer.Stop()
-		shortTimer = NewTimer(Idle, func() {
-			fmt.Println("\r\nYou've been idle for too long... exiting!")
-			time.Sleep(1 * time.Second)
-			os.Exit(0)
-		})
-		char, key, err := keyboard.GetKey()
+		_, _, err := keyboard.GetKey()
 		if err != nil {
 			panic(err)
-		}
-		if string(char) == "q" || string(char) == "Q" || key == keyboard.KeyEsc {
+		} else {
+
+			ClearScreen()
 			break
 		}
-		ClearScreen()
-		continue
+
 	}
 }
