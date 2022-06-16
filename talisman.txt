@@ -1,0 +1,45 @@
+==============================================================================
+ >> PREREQUISITES:
+==============================================================================
+
+Talisman v.038-dev or higher
+
+
+==============================================================================
+ >> INSTALLATION INSTRUCTIONS (STEP-BY-STEP):
+==============================================================================
+
+1) Place phenomdrop.lua in your Talisman scripts directory.
+
+Example path: /home/username/bbs/scripts
+
+2) Edit the first two lines of phenomdrop.lua:
+
+-- SET THESE TO VARIABLES TO YOUR BBS -----------------------------------------
+local bbsdomain = "alphacomplex.us"  -- change to your domain name
+local bbsdir = "/home/robbiew/bbs"   -- path to BBS, no trailing slash!
+-------------------------------------------------------------------------------
+
+NOTE: Windows will require escaped slashes, e.g.:
+local bbsdir = "C:\\talisman"
+
+Once you've added the files to your scripts directory you'll have to add 
+references to these two files to execute them. 
+
+3) The phenomdrop.lua mod will generate a "legacy" phenom drop file where the 
+user's details will be listed one item per line.
+
+Add this to your bbs/data/loginitems.toml file:
+
+[[loginitem]]
+clear_screen = false
+pause_after = false
+command = "RUNSCRIPT"
+data = "phenomdrop"
+
+You can create your mod or door in any language as the creator script will
+generate a standard drop file.  The dropfile will always be accessible to all 
+of your mods and doors until the user exits the BBS.  Talisman doesn't 
+automatically do a cleanup on the temp directories where the dropfiles are 
+created in, but that's OK.  The next user who logs onto the same node will 
+generate and overwrite the existing file if it's still there.  
