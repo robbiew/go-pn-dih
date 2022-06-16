@@ -197,35 +197,6 @@ func PrintStringLoc(text string, x int, y int) {
 	}
 }
 
-// 00 : Sets the current foreground to Black
-// 01 : Sets the current foreground to Dark Blue
-// 02 : Sets the current foreground to Dark Green
-// 03 : Sets the current foreground to Dark Cyan
-// 04 : Sets the current foreground to Dark Red
-// 05 : Sets the current foreground to Dark Magenta
-// 06 : Sets the current foreground to Brown
-// 07 : Sets the current foreground to Grey
-// 08 : Sets the current foreground to Dark Grey
-// 09 : Sets the current foreground to Light Blue
-// 10 : Sets the current foreground to Light Green
-// 11 : Sets the current foreground to Light Cyan
-// 12 : Sets the current foreground to Light Red
-// 13 : Sets the current foreground to Light Magenta
-// 14 : Sets the current foreground to Yellow
-// 15 : Sets the current foreground to White
-// Setting Background color:
-
-// 16 : Sets the current background to Black
-// 17 : Sets the current background to Blue
-// 18 : Sets the current background to Green
-// 19 : Sets the current background to Cyan
-// 20 : Sets the current background to Red
-// 21 : Sets the current background to Magenta
-// 22 : Sets the current background to Brown
-// 23 : Sets the current background to Grey
-
-// grab from web page and parse text
-
 func getNumEnding() string {
 
 	dayStr := time.Now().Day()
@@ -247,8 +218,6 @@ func generateEventList() {
 	month := time.Now().Month()
 	year := time.Now().Year()
 	current_time := time.Now()
-	// weekday := time.Now().Weekday()
-	// days := [7]string{"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"}
 
 	ClearScreen()
 
@@ -356,31 +325,11 @@ func main() {
 	for {
 
 		generateEventList()
-
-		// var xPos int
-
-		// if Pd.Cols <= 80 {
-
-		// 	xPos = 2
-		// }
-		// if Pd.Cols > 80 {
-
-		// 	xPos = 84
-
-		// }
-
-		// Stop the idle timer after key press, then re-start it
-		shortTimer.Stop()
-		shortTimer = NewTimer(Idle, func() {
-			fmt.Println("\r\nYou've been idle for too long... exiting!")
-			time.Sleep(1 * time.Second)
-			os.Exit(0)
-		})
 		_, err := tty.ReadRune()
 		if err != nil {
 			log.Fatal(err)
 		}
-		break
+		os.Exit(0)
 
 	}
 }
