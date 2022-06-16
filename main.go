@@ -371,14 +371,18 @@ func main() {
 
 		// }
 
-		_, _, err := keyboard.GetKey()
+		// Stop the idle timer after key press, then re-start it
+		shortTimer.Stop()
+		shortTimer = NewTimer(Idle, func() {
+			fmt.Println("\r\nYou've been idle for too long... exiting!")
+			time.Sleep(1 * time.Second)
+			os.Exit(0)
+		})
+		_, _, err := keyboard.GetSingleKey()
 		if err != nil {
 			panic(err)
-		} else {
-
-			ClearScreen()
-			break
 		}
+		fmt.Printf("Onward!")
 
 	}
 }
