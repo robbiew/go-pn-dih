@@ -10,4 +10,4 @@ Only tested on Linux.
 
 1. Build the go file
 2. Generate drop file -- Talisman: read talisman.txt for dropfile scrip install instructions; Mystic: https://www.phenomprod.com/releases/mystic/pn-dropfile12.zip
-4. Launch as a door -- edit shart.sh 
+4. Launch as a door -- edit start.sh to pass dropfile location
